@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import itemData from './components/DataItem';
+import {Item} from './components/Item';
+import {Cart} from './components/Cart';
+import {CartHook} from './components/CartHook';
 
 function App() {
+
+  const cartElement = CartHook();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <div className="shop">
+        <h2>Меню</h2>
+        {
+          itemData.map(item => (<Item key = {item.id} item={item} cartE={cartElement}/>)
+          )
+          
+        }
+        
+      </div>
+
+      <div className="cart">
+          <h2>Заказ</h2>
+          <Cart cartE = {cartElement}></Cart>
+      </div>
     </div>
   );
 }
